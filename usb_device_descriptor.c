@@ -121,40 +121,76 @@ uint8_t g_UsbDeviceDescriptor[] = {
 
 USB_DMA_INIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE)
 uint8_t g_UsbDeviceHidMouseReportDescriptor[] = {
-    0x05U, 0x01U, /* Usage Page (Generic Desktop)*/
-    0x09U, 0x02U, /* Usage (Mouse) */
-    0xA1U, 0x01U, /* Collection (Application) */
-    0x09U, 0x01U, /* Usage (Pointer) */
+	0x05U, 0x01U,                    // USAGE_PAGE (Generic Desktop)
+	0x09U, 0x02U,                    // USAGE (Mouse)
+	0xa1U, 0x01U,                    // COLLECTION (Application)
+	0x85U, 0x01U,                    //   REPORT_ID (1)
+	0x09U, 0x01U,                    //   USAGE (Pointer)
 
-    0xA1U, 0x00U, /* Collection (Physical) */
-    0x05U, 0x09U, /* Usage Page (Buttons) */
-    0x19U, 0x01U, /* Usage Minimum (01U) */
-    0x29U, 0x03U, /* Usage Maximum (03U) */
+	0xa1U, 0x00U,                    //   COLLECTION (Physical)
+	0x05U, 0x09U,                    //     USAGE_PAGE (Button)
+	0x19U, 0x01U,                    //     USAGE_MINIMUM (Button 1)
+	0x29U, 0x03U,                    //     USAGE_MAXIMUM (Button 3)
 
-    0x15U, 0x00U, /* logical Minimum (0U) */
-    0x25U, 0x01U, /* logical Maximum (1U) */
-    0x95U, 0x03U, /* Report Count (3U) */
-    0x75U, 0x01U, /* Report Size (1U) */
+	0x15U, 0x00U,                    //     LOGICAL_MINIMUM (0)
+	0x25U, 0x01U,                    //     LOGICAL_MAXIMUM (1)
+	0x95U, 0x03U,                    //     REPORT_COUNT (3)
+	0x75U, 0x01U,                    //     REPORT_SIZE (1)
 
-    0x81U, 0x02U, /* Input(Data, Variable, Absolute) 3U button bit fields */
-    0x95U, 0x01U, /* Report count (1U) */
-    0x75U, 0x05U, /* Report Size (5U) */
-    0x81U, 0x01U, /* Input (Constant), 5U constant field */
+	0x81U, 0x02U,                    //     INPUT (Data,Var,Abs)
+	0x95U, 0x01U,                    //     REPORT_COUNT (1)
+	0x75U, 0x05U,                    //     REPORT_SIZE (5)
+	0x81U, 0x01U,                    //     INPUT (Cnst,Var,Abs)
 
-    0x05U, 0x01U, /* Usage Page (Generic Desktop) */
-    0x09U, 0x30U, /* Usage (X) */
-    0x09U, 0x31U, /* Usage (Y) */
-    0x09U, 0x38U, /* Usage (Z) */
+	0x05U, 0x01U,                    //     USAGE_PAGE (Generic Desktop)
+	0x09U, 0x30U,                    //     USAGE (X)
+	0x09U, 0x31U,                    //     USAGE (Y)
+	0x09U, 0x38U, 					/* Usage (Z) */
 
-    0x15U, 0x81U, /* Logical Minimum (-127) */
-    0x25U, 0x7FU, /* Logical Maximum (127) */
-    0x75U, 0x08U, /* Report Size (8U) */
-    0x95U, 0x03U, /* Report Count (3U) */
+	0x15U, 0x81U,                    //     LOGICAL_MINIMUM (-127)
+	0x25U, 0x7fU,                    //     LOGICAL_MAXIMUM (127)
+	0x75U, 0x08U,                    //     REPORT_SIZE (8)
+	0x95U, 0x03U,                    //     REPORT_COUNT (2)
 
-    0x81U, 0x06U, /* Input(Data, Variable, Relative), three position bytes (X & Y & Z)*/
-    0xC0U,        /* end collection, Close Pointer collection*/
-    0xC0U         /* end collection, Close Mouse collection */
+	0x81U, 0x06U,                    //     INPUT (Data,Var,Rel)
+	0xc0U,                          //   END_COLLECTION
+
+    0x05, 0x01,                    // USAGE_PAGE (Generic Desktop)
+    0x09, 0x06,                    // USAGE (Keyboard)
+    0xa1, 0x01,                    // COLLECTION (Application)
+    0x85, 0x02,                    //   REPORT_ID (2)
+    0x05, 0x07,                    //   USAGE_PAGE (Keyboard)
+    0x19, 0xe0,                    //   USAGE_MINIMUM (Keyboard LeftControl)
+    0x29, 0xe7,                    //   USAGE_MAXIMUM (Keyboard Right GUI)
+    0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
+    0x25, 0x01,                    //   LOGICAL_MAXIMUM (1)
+    0x75, 0x01,                    //   REPORT_SIZE (1)
+    0x95, 0x08,                    //   REPORT_COUNT (8)
+    0x81, 0x02,                    //   INPUT (Data,Var,Abs)
+    0x95, 0x01,                    //   REPORT_COUNT (1)
+    0x75, 0x08,                    //   REPORT_SIZE (8)
+    0x81, 0x03,                    //   INPUT (Cnst,Var,Abs)
+    0x95, 0x05,                    //   REPORT_COUNT (5)
+    0x75, 0x01,                    //   REPORT_SIZE (1)
+    0x05, 0x08,                    //   USAGE_PAGE (LEDs)
+    0x19, 0x01,                    //   USAGE_MINIMUM (Num Lock)
+    0x29, 0x05,                    //   USAGE_MAXIMUM (Kana)
+    0x91, 0x02,                    //   OUTPUT (Data,Var,Abs)
+    0x95, 0x01,                    //   REPORT_COUNT (1)
+    0x75, 0x03,                    //   REPORT_SIZE (3)
+    0x91, 0x03,                    //   OUTPUT (Cnst,Var,Abs)
+    0x95, 0x06,                    //   REPORT_COUNT (6)
+    0x75, 0x08,                    //   REPORT_SIZE (8)
+    0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
+    0x25, 0x65,                    //   LOGICAL_MAXIMUM (101)
+    0x05, 0x07,                    //   USAGE_PAGE (Keyboard)
+    0x19, 0x00,                    //   USAGE_MINIMUM (Reserved (no event indicated))
+    0x29, 0x65,                    //   USAGE_MAXIMUM (Keyboard Application)
+    0x81, 0x00,                    //   INPUT (Data,Ary,Abs)
+    0xc0,                           // END_COLLECTION
+	0xc0U         /* end collection, Close Mouse collection */
 };
+
 
 USB_DMA_INIT_DATA_ALIGN(USB_DATA_ALIGN_SIZE)
 uint8_t g_UsbDeviceConfigurationDescriptor[] = {

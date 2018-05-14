@@ -177,22 +177,30 @@ static usb_status_t USB_DeviceHidMouseAction(void)
     };
     static uint8_t dir = RIGHT;
 
+    g_UsbDeviceHidMouse.buffer[0] = 2U;
+
     switch (dir)
     {
         case RIGHT:
+        	x++;
+        	if(x>200U)
+        	{
+				g_UsbDeviceHidMouse.buffer[2] = KEY_LEFT_GUI;	/* 0x65 = tecla de windows */
+				g_UsbDeviceHidMouse.buffer[3] = KEY_R;
+        	}
             /* Move right. Increase X value. */
-            g_UsbDeviceHidMouse.buffer[1] = 2U;
-            g_UsbDeviceHidMouse.buffer[2] = 0U;
-            x++;
-            if (x > 99U)
-            {
-                dir++;
-            }
+//            g_UsbDeviceHidMouse.buffer[2] = 2U;
+//            g_UsbDeviceHidMouse.buffer[3] = 0U;
+//            x++;
+//            if (x > 99U)
+//            {
+//                dir++;
+//            }
             break;
         case DOWN:
             /* Move down. Increase Y value. */
-            g_UsbDeviceHidMouse.buffer[1] = 0U;
-            g_UsbDeviceHidMouse.buffer[2] = 2U;
+            g_UsbDeviceHidMouse.buffer[2] = 0U;
+            g_UsbDeviceHidMouse.buffer[3] = 2U;
             y++;
             if (y > 99U)
             {
@@ -201,8 +209,8 @@ static usb_status_t USB_DeviceHidMouseAction(void)
             break;
         case LEFT:
             /* Move left. Discrease X value. */
-            g_UsbDeviceHidMouse.buffer[1] = (uint8_t)(-2);
-            g_UsbDeviceHidMouse.buffer[2] = 0U;
+            g_UsbDeviceHidMouse.buffer[2] = (uint8_t)(-2);
+            g_UsbDeviceHidMouse.buffer[3] = 0U;
             x--;
             if (x < 2U)
             {
@@ -211,8 +219,8 @@ static usb_status_t USB_DeviceHidMouseAction(void)
             break;
         case UP:
             /* Move up. Discrease Y value. */
-            g_UsbDeviceHidMouse.buffer[1] = 0U;
-            g_UsbDeviceHidMouse.buffer[2] = (uint8_t)(-2);
+            g_UsbDeviceHidMouse.buffer[2] = 0U;
+            g_UsbDeviceHidMouse.buffer[3] = (uint8_t)(-2);
             y--;
             if (y < 2U)
             {
